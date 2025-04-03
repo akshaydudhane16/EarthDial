@@ -63,7 +63,7 @@ pip install -e .
 ```
 
 ## EarthDial Weights and Demo
-Please check out our [Model]() for all public EarthDial checkpoints, and check demo section for instructions on how to run the earthdial demo.
+Please check out our [Model](https://huggingface.co/akshaydudhane/EarthDial_4B_RGB) for all public EarthDial checkpoints, and check demo section for instructions on how to run the earthdial demo.
 
 ## Train 
 (Asll the checkpoints will be available  soon)
