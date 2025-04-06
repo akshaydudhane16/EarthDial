@@ -247,8 +247,8 @@ def evaluate_chat_model():
         )
 
         outputs = []
-        for pixel_values, questions, captions0, captions1, captions2, captions3, captions4 in islice(tqdm(dataloader), 5):
-        #for pixel_values, questions, captions0, captions1, captions2, captions3, captions4 in tqdm(dataloader):
+        #for pixel_values, questions, captions0, captions1, captions2, captions3, captions4 in islice(tqdm(dataloader), 5):
+        for pixel_values, questions, captions0, captions1, captions2, captions3, captions4 in tqdm(dataloader):
             pixel_values = pixel_values.to(torch.bfloat16).cuda()
             generation_config = dict(
                 num_beams=args.num_beams,

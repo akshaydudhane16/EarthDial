@@ -39,7 +39,7 @@ echo "GPUS: ${GPUS}"
 
 if [ "${TASK}" = "rs_classification" ]; then
     
-    DATASETS='STARCOP_test,UHI_test'
+    DATASETS='UHI_test'
 
     torchrun \
     --nnodes=1 \
@@ -54,7 +54,8 @@ fi
 
 if [ "${TASK}" = "rs_detection" ]; then
     
-    DATASETS='GeoChat,NWPU_VHR_10,Swimming_pool_dataset,urban_tree_crown_detection'
+    DATASETS='urban_tree_crown_detection'
+    #DATASETS='GeoChat,NWPU_VHR_10,Swimming_pool_dataset,urban_tree_crown_detection'
 
     torchrun \
     --nnodes=1 \
@@ -111,7 +112,6 @@ fi
 if [ "${TASK}" = "rs_grounding_description" ]; then
     
     DATASETS='HIT_UAV,NWPU_VHR_10,Swimming_pool_dataset,UCAS_AOD'
-    CHECKPOINT='./checkpoints/EarthDial_4B_RGB'
 
     torchrun \
     --nnodes=1 \
@@ -121,14 +121,13 @@ if [ "${TASK}" = "rs_grounding_description" ]; then
     --master_port=${MASTER_PORT} \
     src/earthdial/eval/rs_grounding_description/grounding_desscription_test.py --checkpoint ${CHECKPOINT} --datasets ${DATASETS} --out-dir src/earthdial/eval/rs_grounding_description/results "${ARGS[@]:2}"
 
-    clear && python src/earthdial/eval/rs_grounding_description/eval.py --datasets ${DATASETS}
+    python src/earthdial/eval/rs_grounding_description/eval.py --datasets ${DATASETS}
 fi
 
 
 if [ "${TASK}" = "rs_vqa" ]; then
     
     DATASETS='RSVQA_LR,RSVQA_HR'
-    CHECKPOINT='./checkpoints/EarthDial_4B_RGB'
 
     torchrun \
     --nnodes=1 \
@@ -138,7 +137,7 @@ if [ "${TASK}" = "rs_vqa" ]; then
     --master_port=${MASTER_PORT} \
     src/earthdial/eval/rs_vqa/vqa_test.py --checkpoint ${CHECKPOINT} --datasets ${DATASETS} --out-dir src/earthdial/eval/rs_vqa/results "${ARGS[@]:2}"
 
-    clear && python src/earthdial/eval/rs_vqa/eval.py --datasets ${DATASETS}
+    python src/earthdial/eval/rs_vqa/eval.py --datasets ${DATASETS}
 fi
 
 
@@ -153,8 +152,7 @@ if [ "${TASK}" = "rs_change_detection" ]; then
     #Object Detection dataset: xBD_object_detection
     #Reffered Object Detection dataset: xBD_referred_object_detection
     
-    DATASETS='Dubai_CC,LEVIR_MCI,MUDS,SYSU'
-    CHECKPOINT='./checkpoints/EarthDial_4B_RGB'
+    DATASETS='xBD_referred_object_detection'
 
     torchrun \
     --nnodes=1 \
@@ -164,17 +162,15 @@ if [ "${TASK}" = "rs_change_detection" ]; then
     --master_port=${MASTER_PORT} \
     src/earthdial/eval/rs_change_detection/rs_change_detection_test.py --checkpoint ${CHECKPOINT} --datasets ${DATASETS} --out-dir src/earthdial/eval/rs_change_detection/results "${ARGS[@]:2}"
 
-    clear && python src/earthdial/eval/rs_change_detection/eval_detection.py --datasets ${DATASETS}
-    #python src/earthdial/eval/rs_change_detection/eval_detection.py --datasets ${DATASETS}
-    python src/earthdial/eval/rs_change_detection/eval_classification.py --datasets ${DATASETS}
-    python src/earthdial/eval/rs_change_detection/eval_caption.py --datasets ${DATASETS}
+    python src/earthdial/eval/rs_change_detection/eval_detection.py --datasets ${DATASETS}
+    #python src/earthdial/eval/rs_change_detection/eval_classification.py --datasets ${DATASETS}
+    #python src/earthdial/eval/rs_change_detection/eval_caption.py --datasets ${DATASETS}
 fi
 
 
 if [ "${TASK}" = "rs_methane_plume" ]; then
 
     DATASETS='rs_UHI'
-    CHECKPOINT='./checkpoints/EarthDial_4B_Methane_UHI'
 
     torchrun \
     --nnodes=1 \
@@ -227,14 +223,17 @@ fi
 
 
 
-if [ "${DATASET}" = "quakeset_shards" ]; then
+if [ "${TASK}" = "quakeset_shards" ]; then
+
+    DATASETS=rs_tree_test
+
     torchrun \
     --nnodes=1 \
     --node_rank=0 \
     --master_addr=127.0.0.1 \
     --nproc_per_node=${GPUS} \
     --master_port=${MASTER_PORT} \
-    /share/data/drive_2/remote_sensing/InternVL/GeoVLM_Git/src/geovlm/eval/rs_classification/classification_shards_Quakeset.py --checkpoint ${CHECKPOINT} --out-dir /share/data/drive_2/remote_sensing/InternVL/internvl_chat/eval/quake_set/4B_Full_9Nov_pretrain_VIT_MLP_LLM_1_RGBFinetune_Change_MS_Quakset_2 "${ARGS[@]:2}"
+    /share/data/drive_2/remote_sensing/InternVL/GeoVLM_Git/src/geovlm/eval/rs_classification/classification_shards_Quakeset.py --checkpoint ${CHECKPOINT} --datasets ${DATASETS} --out-dir /share/data/drive_2/remote_sensing/InternVL/internvl_chat/eval/quake_set/4B_Full_9Nov_pretrain_VIT_MLP_LLM_1_RGBFinetune_Change_MS_Quakset_2 "${ARGS[@]:2}"
 fi
 
 

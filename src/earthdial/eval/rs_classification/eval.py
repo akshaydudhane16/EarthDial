@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     for ds_name in args.datasets:
 
-        json_path = f'src/earthdial/eval/rs_classification/results/{ds_name}.jsonl'
+        json_path = f'/share/data/drive_2/remote_sensing/EarthDial/src/earthdial/eval/rs_classification/results/{ds_name}.jsonl'
         f = open(json_path)
 
         data = [json.loads(line) for line in f.readlines()]

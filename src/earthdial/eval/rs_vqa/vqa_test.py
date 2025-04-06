@@ -8,10 +8,10 @@ import time
 from functools import partial
 from typing import Optional
 import sys
-sys.path.append('./internvl_chat')
+sys.path.append('./src')
 import torch
-from internvl.model.internvl_chat import InternVLChatModel
-from internvl.train.dataset import build_transform, dynamic_preprocess
+from earthdial.model.internvl_chat import InternVLChatModel
+from earthdial.train.dataset import build_transform, dynamic_preprocess
 from PIL import Image
 from tqdm import tqdm
 from transformers import AutoTokenizer
@@ -154,7 +154,7 @@ def evaluate_chat_model():
                 pixel_values=pixel_values,
                 question=questions[0],
                 generation_config=generation_config,
-                verbose=True
+                verbose=False
             )
             answers = [pred]
             
@@ -225,7 +225,7 @@ if __name__ == '__main__':
     )
 
     torch.cuda.set_device(int(os.getenv('LOCAL_RANK', 0)))
-    args.checkpoint = args.base_path + args.checkpoint
+    #args.checkpoint = args.base_path + args.checkpoint
     
     if args.auto:
         os.environ['CUDA_LAUNCH_BLOCKING'] = '1'

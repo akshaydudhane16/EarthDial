@@ -92,7 +92,7 @@ def parse_bboxes(bbox_str):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--datasets', type=str, default='xBD_object_detection')
+    parser.add_argument('--datasets', type=str, default='xBD_referred_object_detection')
     args = parser.parse_args()
 
     args.datasets = args.datasets.split(',')
@@ -119,7 +119,7 @@ if __name__ == '__main__':
                 for gt_box in gt_bboxes:
                     gt_vertices = get_rotated_box_vertices(*gt_box)
                     iou = calculate_iou(pred_vertices, gt_vertices)   
-                    if iou >= 0.25:
+                    if iou >= 0.5:
                         correct += 1
                         break  # Count each prediction only once
                     

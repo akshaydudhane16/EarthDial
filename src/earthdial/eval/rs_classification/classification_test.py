@@ -28,19 +28,19 @@ warnings.filterwarnings("once")
 
 ds_collections = {
     'AID': {
-        'shard_path': './validation_data/Classification/AID',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/Classification/AID',
         'max_new_tokens': 10,
         'normalization': 'imagenet',
         'pooling': None
     },
     'UCM': {
-        'shard_path': './validation_data/Classification/UCM',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/Classification/UCM',
         'max_new_tokens': 10,
         'normalization': 'imagenet',
         'pooling': None
     },
     'WHU_19': {
-        'shard_path': './validation_data/Classification/WHU_19',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/Classification/WHU_19',
         'max_new_tokens': 10,
         'normalization': 'imagenet',
         'pooling': None
@@ -52,14 +52,14 @@ ds_collections = {
         'pooling': None
     },  
     'rs_LCZ_test': {
-        'shard_path': './validation_data/Classification/LCZs_S2/LCZs_S2_test',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/Classification/LCZs_S2/LCZs_S2_test',
         'max_new_tokens': 10,
         'bands':10,
         'normalization':'s2_norm',
         'pooling': 'bilinear'
     },
     'TreeSatAI': {
-        'shard_path': './validation_data/Classification/TreeSatAI/TreeSatAI_test',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/Classification/TreeSatAI/TreeSatAI_test',
         'max_new_tokens': 10,
         'bands':4,
         'normalization':'tree_norm',
@@ -73,7 +73,7 @@ ds_collections = {
         'po,oling': 'average'
     },
     'STARCOP_test': {
-        'shard_path': './validation_data/STARCOP_shards/STARCOP_shards/STARCOP_test_yes_or_no',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/STARCOP_shards/STARCOP_shards/STARCOP_test_yes_or_no',
         'max_new_tokens': 10,
         'bands':4,
         "image_key": "tif_pl,mag1c",
@@ -81,7 +81,7 @@ ds_collections = {
         'pooling': 'bilinear'
     },
     'UHI_test': {
-        'shard_path': './validation_data/UHI_shards/UHI_temperature_landuse_test',
+        'shard_path': '/share/data/drive_2/remote_sensing/validation_data/UHI_shards/UHI_temperature_landuse_test',
         'max_new_tokens': 50,
         'bands':8,
         'normalization':'l8_norm',
