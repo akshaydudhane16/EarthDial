@@ -5,6 +5,9 @@ This repository provides a streamlined **evaluation pipeline** for the **Image C
 
 ---
 
+## EarthDial Weights and Demo
+Please check out our [Model](https://huggingface.co/akshaydudhane/EarthDial_4B_RGB) for all public EarthDial checkpoints, and check demo section for instructions on how to run the earthdial demo.
+
 ## 📂 Data Preparation
 
 Before downloading the datasets, ensure that the following directory structure exists:
